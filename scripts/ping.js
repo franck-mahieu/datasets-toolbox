@@ -6,8 +6,11 @@
 const ipToPing = process.env.ipToPing ? process.env.ipToPing : `www.google.com`;
 
 const exec = require('child_process').exec;
-const childProcess = exec(`ping -c 3 ${ipToPing}`);
 
-childProcess.stdout.on('data', function (data) {
-    console.log(data);
+exec(`ping -t 1 ${ipToPing}`, (err, stdout) => {
+    if (err) {
+        console.error(err)
+    } else {
+        console.log(stdout);
+    }
 });
