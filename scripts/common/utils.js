@@ -18,7 +18,7 @@ const applyOnEachLines = async ({sourcePath, extension, functionToApply}) => {
     });
 
     let isFirstLine = true
-    return await pipelineAsync(readStream, es.split(), es.mapSync(line => {
+    return pipelineAsync(readStream, es.split(), es.mapSync(line => {
             functionToApply({line, isFirstLine})
         }
     ));
@@ -40,7 +40,7 @@ const convertFile = async ({sourcePath, extension, convertFunction}) => {
     });
 
     let isFirstLine = true
-    return await pipelineAsync(readStream, es.split(), es.mapSync(line => {
+    return pipelineAsync(readStream, es.split(), es.mapSync(line => {
             const result = convertFunction({line, isFirstLine})
             if (isFirstLine) {
                 isFirstLine = false
@@ -64,7 +64,7 @@ const convertCsvToJson = async ({sourcePath, csvOptions}) => {
         console.log(`File ${targetPath}.json was successfully converted in ${hrEnd[0]}s ${hrEnd[1] / 1000000}ms`)
     });
 
-    return await pipelineAsync(readStream, csv(csvOptions), writeStream);
+    return pipelineAsync(readStream, csv(csvOptions), writeStream);
 }
 
 module.exports.convertFile = convertFile;
