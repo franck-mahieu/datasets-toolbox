@@ -2,6 +2,7 @@
   "name": "toolbox",
   "version": "0.1.0",
   "private": false,
+  "license": "MIT",
   "engines": {
     "node": ">=10.0.0"
   },
