@@ -108,7 +108,7 @@ Launch this command, just update the ipToPing env var :
 ```
 cross-env ipToPing= node ./scripts/ping.js
 ```
-Without ipToPing env var, the script ping google by default
+Without ipToPing env var, the script ping google DNS by default
 
 # Others
 Don't hesistate to make issue or PR if needed.
