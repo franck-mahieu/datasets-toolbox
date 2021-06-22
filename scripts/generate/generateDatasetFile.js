@@ -13,19 +13,36 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+const write = (writer, data) => {
+    return new Promise((resolve) => {
+        if (!writer.write(data)) {
+            writer.once('drain', resolve)
+        } else {
+            resolve()
+        }
+    })
+}
+
 (async () => {
     console.info(`Generate dataset of ${expectedLines} lines is launched`)
     const startHrTime = process.hrtime();
-
     try {
-        let readStream = fs.createWriteStream(outputFilePath);
-        for (let i = 0; i< expectedLines; i+=1){
-            readStream.write(`${linesToInsert[randomIntFromInterval(0,linesToInsert.length-1)]}\n`)
+        let current = 0
+        let writeStream = fs.createWriteStream(outputFilePath);
+        writeStream.on('error', (err) => {
+            throw err;
+        })
+
+        while (current <= expectedLines) {
+            await write(writeStream, `${linesToInsert[randomIntFromInterval(0, linesToInsert.length - 1)]}\n`)
+            current += 1;
         }
-        readStream.emit('end');
+
+        writeStream.emit('end');
         const endHrTime = process.hrtime(startHrTime);
         console.info(`Dataset "${outputFilePath}" file was successfully generated in ${endHrTime[0]}s and ${endHrTime[1] / 1000000}ms`);
     } catch (err) {
         console.error('An error occured', err)
     }
 })();
+
