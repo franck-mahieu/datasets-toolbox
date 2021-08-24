@@ -130,10 +130,24 @@ This line is not parsable : {"key4": "value2", "key5":}
 Launch this command, just update the sourcePath env var :
 
 ```
-cross-env sourcePath=pathToYourFileWithoutExtension node scripts/transform/detectErrorInJsonByLine.js
+cross-env sourcePath=pathToYourFileWithoutExtension node scripts/validation/detectErrorInJsonByLine.js
 ```
 
 Without sourcePath env var, the script choose the file in dataset folder
+
+### detectErrorInJsonsInsideFolder
+
+Iterate over each json file in specified folder to log every not parsable files, like
+
+#### How to launch
+
+Launch this command, just update the sourcePath env var :
+
+```
+cross-env sourcePath=pathToYourFolder node scripts/validation/detectErrorInJsonsInsideFolder.js
+```
+
+Without sourcePath env var, the script choose the folder `folderOfJsons` in dataset folder
 
 ## Ping
 

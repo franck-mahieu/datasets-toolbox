@@ -9,6 +9,7 @@
   "scripts": {
     "start-ping": "cross-env ipToPing= node ./scripts/ping.js",
     "start-detectErrorInJsonByLine": "cross-env sourcePath= node scripts/validation/detectErrorInJsonByLine.js",
+    "start-detectErrorInJsonsInsideFolder": "cross-env sourcePath= node scripts/validation/detectErrorInJsonsInsideFolder.js",
     "start-convertObjectByLineToObjectsArray": "cross-env sourcePath= node scripts/transform/convertObjectByLineToObjectsArray.js",
     "start-convertCsvToJson": "cross-env sourcePath= node scripts/transform/convertCsvToJson.js",
     "start-transformEveryObjectInObjectByLine": "cross-env sourcePath= node scripts/transform/transformEveryObjectsInObjectByLine.js",
